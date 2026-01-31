@@ -1,0 +1,450 @@
+<script>
+// Data produk
+const products = [
+    {
+        id: 1,
+        name: "Keyboard Mechanical RGB",
+        category: "keyboard",
+        description: "Keyboard gaming dengan lampu RGB yang dapat disesuaikan",
+        price: 350000,
+        discount: 450000,
+        image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 2,
+        name: "Keyboard Gaming TKL",
+        category: "keyboard",
+        description: "Tenkeyless keyboard untuk gaming competitive",
+        price: 420000,
+        discount: 520000,
+        image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 3,
+        name: "Mouse Gaming",
+        category: "mouse",
+        description: "Mouse presisi tinggi dengan 8 tombol programmable",
+        price: 250000,
+        discount: 320000,
+        image: "https://images.unsplash.com/photo-1613141412501-9012977f1969?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 4,
+        name: "Intel Core i3",
+        category: "processor",
+        description: "Prosesor entry-level untuk kebutuhan sehari-hari",
+        price: 1800000,
+        discount: 2100000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 5,
+        name: "Intel Core i5",
+        category: "processor",
+        description: "Prosesor mid-range untuk gaming dan multitasking",
+        price: 3200000,
+        discount: 3700000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 6,
+        name: "Intel Core i7",
+        category: "processor",
+        description: "Prosesor high-end untuk gaming dan konten kreator",
+        price: 5500000,
+        discount: 6200000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 7,
+        name: "ASUS TUF B660",
+        category: "motherboard",
+        description: "Motherboard gaming untuk Intel Gen 12/13",
+        price: 2750000,
+        discount: 3200000,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 8,
+        name: "MSI MPG Z790",
+        category: "motherboard",
+        description: "Motherboard premium untuk overclocking",
+        price: 4850000,
+        discount: 5500000,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 9,
+        name: "Gigabyte B550 AORUS",
+        category: "motherboard",
+        description: "Motherboard AMD dengan WiFi dan RGB",
+        price: 3250000,
+        discount: 3800000,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 10,
+        name: "RAM 4GB DDR4",
+        category: "ram",
+        description: "RAM 4GB DDR4 3200MHz untuk kebutuhan dasar",
+        price: 350000,
+        discount: 450000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 11,
+        name: "RAM 8GB DDR4 RGB",
+        category: "ram",
+        description: "RAM 8GB DDR4 3600MHz dengan RGB lighting",
+        price: 720000,
+        discount: 850000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 12,
+        name: "RAM 16GB DDR5",
+        category: "ram",
+        description: "RAM 16GB DDR5 5200MHz untuk gaming",
+        price: 1550000,
+        discount: 1800000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 13,
+        name: "RAM 32GB DDR5",
+        category: "ram",
+        description: "RAM 32GB DDR5 6000MHz untuk konten kreator",
+        price: 2950000,
+        discount: 3500000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 14,
+        name: "RAM 64GB DDR5 Kit",
+        category: "ram",
+        description: "RAM 64GB DDR5 (2x32GB) untuk workstation",
+        price: 5500000,
+        discount: 6200000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 15,
+        name: "SSD 128GB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 128GB untuk sistem operasi",
+        price: 280000,
+        discount: 350000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 16,
+        name: "SSD 256GB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 256GB dengan kecepatan tinggi",
+        price: 450000,
+        discount: 550000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 17,
+        name: "SSD 512GB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 512GB untuk gaming dan aplikasi",
+        price: 820000,
+        discount: 950000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 18,
+        name: "SSD 1TB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 1TB dengan heatsink RGB",
+        price: 1550000,
+        discount: 1800000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 19,
+        name: 'Monitor 24" 144Hz',
+        category: "monitor",
+        description: "Monitor gaming 24 inch dengan refresh rate 144Hz",
+        price: 2100000,
+        discount: 2500000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 20,
+        name: 'Monitor 27" 165Hz QHD',
+        category: "monitor",
+        description: "Monitor gaming 27 inch QHD 165Hz IPS",
+        price: 3650000,
+        discount: 4200000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 21,
+        name: 'Monitor 32" 4K',
+        category: "monitor",
+        description: "Monitor 32 inch 4K untuk produktivitas",
+        price: 4950000,
+        discount: 5800000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 22,
+        name: 'Monitor 34" Ultrawide',
+        category: "monitor",
+        description: "Monitor ultrawide 34 inch untuk immersive experience",
+        price: 7200000,
+        discount: 8500000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    }
+];
+
+// Cart data
+let cart = [];
+let totalHarga = 0;
+
+// Format angka ke Rupiah
+function formatRupiah(angka) {
+    return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+// Tampilkan produk
+function displayProducts(productsToShow = products) {
+    const productsGrid = document.getElementById('productsGrid');
+    productsGrid.innerHTML = '';
+    
+    productsToShow.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'card';
+        productCard.setAttribute('data-category', product.category);
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" loading="lazy">
+            <h3>${product.name}</h3>
+            <p class="description">${product.description}</p>
+            <p>
+                <span class="discount">${formatRupiah(product.discount)}</span>
+                <span class="price">${formatRupiah(product.price)}</span>
+            </p>
+            <button class="btn" onclick="addToCart(${product.id})">
+                <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+            </button>
+        `;
+        productsGrid.appendChild(productCard);
+    });
+}
+
+// Filter produk berdasarkan kategori
+function filterProducts(category) {
+    // Update active button
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    if (category === 'all') {
+        displayProducts();
+    } else {
+        const filteredProducts = products.filter(product => product.category === category);
+        displayProducts(filteredProducts);
+    }
+}
+
+// Tambah item ke keranjang
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    
+    // Cek apakah produk sudah ada di keranjang
+    const existingItem = cart.find(item => item.id === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+    
+    updateCart();
+    showConfirmation();
+    updateCartCounter();
+}
+
+// Update tampilan keranjang
+function updateCart() {
+    const cartList = document.getElementById('cartList');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    const totalHargaElement = document.getElementById('totalHarga');
+    
+    cartList.innerHTML = '';
+    totalHarga = 0;
+    
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+    } else {
+        emptyCartMessage.style.display = 'none';
+        
+        cart.forEach((item, index) => {
+            totalHarga += item.price * item.quantity;
+            
+            const cartItem = document.createElement('li');
+            cartItem.innerHTML = `
+                <div>
+                    <strong>${item.name}</strong><br>
+                    <small>${formatRupiah(item.price)} × ${item.quantity}</small>
+                </div>
+                <div>
+                    <span style="color: #32cd32; font-weight: bold;">
+                        ${formatRupiah(item.price * item.quantity)}
+                    </span>
+                    <button class="remove-item" onclick="removeFromCart(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            cartList.appendChild(cartItem);
+        });
+    }
+    
+    totalHargaElement.textContent = `Total: ${formatRupiah(totalHarga)}`;
+}
+
+// Hapus item dari keranjang
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+    updateCartCounter();
+}
+
+// Update counter keranjang
+function updateCartCounter() {
+    const cartCounter = document.getElementById('cartCounter');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCounter.textContent = totalItems;
+    cartCounter.style.display = totalItems > 0 ? 'flex' : 'none';
+}
+
+// Tampilkan konfirmasi
+function showConfirmation() {
+    const confirmation = document.getElementById('confirmation');
+    confirmation.classList.add('show');
+    
+    setTimeout(() => {
+        confirmation.classList.remove('show');
+    }, 2000);
+}
+
+// Checkout
+function checkout() {
+    if (cart.length === 0) {
+        alert('Keranjang belanja Anda masih kosong!');
+        return;
+    }
+    
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const confirmed = confirm(`Anda akan membeli ${totalItems} item dengan total ${formatRupiah(totalHarga)}.\n\nLanjutkan checkout?`);
+    
+    if (confirmed) {
+        alert('🎄🎅 Terima kasih telah berbelanja! Selamat Natal!\n\nPesanan Anda sedang diproses. Kami akan mengirimkan konfirmasi via email.');
+        
+        // Reset keranjang
+        cart = [];
+        updateCart();
+        updateCartCounter();
+    }
+}
+
+// Efek salju
+function createSnowflakes() {
+    const snowContainer = document.getElementById('snow-container');
+    const snowflakeCount = 50;
+    
+    for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        
+        const size = Math.random() * 5 + 3;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 3 + 2;
+        
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        snowflake.style.left = `${posX}vw`;
+        snowflake.style.top = '-10px';
+        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+        snowflake.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+        
+        snowContainer.appendChild(snowflake);
+    }
+    
+    // Tambahkan style untuk animasi jatuh
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Efek lampu natal
+function createChristmasLights() {
+    const lightsContainer = document.getElementById('lights-container');
+    const lightCount = 20;
+    const colors = ['#ff0000', '#32cd32', '#ffff00', '#ffffff', '#ffa500'];
+    
+    for (let i = 0; i < lightCount; i++) {
+        const light = document.createElement('div');
+        light.className = 'light';
+        
+        const posX = (i / lightCount) * 100;
+        const colorIndex = i % colors.length;
+        const delay = Math.random() * 1;
+        
+        light.style.left = `${posX}%`;
+        light.style.top = '20px';
+        light.style.backgroundColor = colors[colorIndex];
+        light.style.animationDelay = `${delay}s`;
+        
+        lightsContainer.appendChild(light);
+    }
+}
+
+// Inisialisasi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    // Tampilkan produk
+    displayProducts();
+    
+    // Update cart counter
+    updateCartCounter();
+    
+    // Buat efek visual
+    createSnowflakes();
+    createChristmasLights();
+    
+    // Tambahkan efek klik pada kartu produk
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.card')) {
+            const card = e.target.closest('.card');
+            card.style.transform = 'translateY(-5px) scale(0.98)';
+            setTimeout(() => {
+                card.style.transform = '';
+            }, 100);
+        }
+    });
+});
+
+// Fungsi tambahan untuk efek Natal
+function addCartWithEffect(productName, price) {
+    // Cari produk berdasarkan nama
+    const product = products.find(p => p.name === productName);
+    if (product) {
+        addToCart(product.id);
+    }
+}
+</script>
