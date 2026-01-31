@@ -1,73 +1,979 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enter Komputer - Toko Komputer & PC Rakitan</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<title>Perlengkapan Komputer | Toko Online Natal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0c1b33 0%, #0a1429 100%);
+    color: #f0f8ff;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efek salju */
+.snowflake {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Efek cahaya lampu natal */
+.light {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Header dengan tema Natal */
+header {
+    background: linear-gradient(to right, #1a472a 0%, #0f172a 70%, #8b0000 100%);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff0000, #32cd32, #ffffff, #ffd700, #ff0000);
+    background-size: 200% 100%;
+    animation: ribbonMove 3s linear infinite;
+}
+
+@keyframes ribbonMove {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo i {
+    color: #ffd700;
+    font-size: 1.8rem;
+}
+
+nav a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ffd700;
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Hero section Natal */
+.hero {
+    background: linear-gradient(rgba(10, 40, 20, 0.85), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    color: #ffd700;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    color: #f0f8ff;
+}
+
+.christmas-offer {
+    background: rgba(139, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    color: #ffd700;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #32cd32, #ff0000);
+    border-radius: 2px;
+}
+
+/* Products Grid */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Kartu produk dengan tema Natal */
+.card {
+    background: linear-gradient(145deg, #1a2b3c, #0f1a28);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff0000, #32cd32, #ffd700);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(139, 0, 0, 0.4);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* Efek klik pada kartu */
+.card:active {
+    transform: translateY(-5px) scale(0.98);
+    transition: transform 0.1s;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.card h3 {
+    color: #ffd700;
+    margin: 10px 0;
+    font-size: 1.4rem;
+}
+
+.card p.description {
+    color: #a0aec0;
+    font-size: 0.9rem;
+    min-height: 40px;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #32cd32;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 15px 0;
+}
+
+.discount {
+    color: #ff6b6b;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+/* Tombol dengan efek Natal */
+.btn {
+    background: linear-gradient(to right, #32cd32, #228b22);
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(50, 205, 50, 0.3);
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #228b22, #32cd32);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(50, 205, 50, 0.5);
+}
+
+.btn:active {
+    transform: translateY(0);
+    transition: transform 0.1s;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(40, 40);
+        opacity: 0;
+    }
+}
+
+/* Keranjang belanja */
+.cart {
+    background: rgba(26, 43, 60, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.cart h3 {
+    color: #ffd700;
+    margin-top: 0;
+}
+
+#cartList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#cartList li {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #32cd32;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+#cartList li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.remove-item {
+    background: #8b0000;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.remove-item:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+}
+
+#totalHarga {
+    font-size: 1.5rem;
+    text-align: right;
+    color: #ffd700;
+    padding: 15px 0;
+    border-top: 2px dashed rgba(255, 215, 0, 0.5);
+}
+
+/* Tombol checkout khusus */
+.checkout-btn {
+    background: linear-gradient(to right, #ff0000, #8b0000);
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+}
+
+.checkout-btn:hover {
+    background: linear-gradient(to right, #8b0000, #ff0000);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.6);
+}
+
+.checkout-btn i {
+    margin-right: 10px;
+}
+
+/* Footer Natal */
+footer {
+    background: linear-gradient(to right, #1a472a, #0f172a);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: "🎄🎁✨";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+footer p {
+    margin: 10px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffd700;
+    transform: translateY(-3px);
+}
+
+/* Kategori produk */
+.category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: #ffd700;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Responsif */
+@media(max-width: 768px){
+    header {
+        text-align: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    nav a {
+        margin: 0 10px;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .products {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .category-filter {
+        gap: 10px;
+    }
+}
+
+/* Efek konfirmasi tambah ke keranjang */
+.confirmation {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(to right, #32cd32, #228b22);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transform: translateX(120%);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.confirmation.show {
+    transform: translateX(0);
+}
+
+/* Dekorasi pohon natal kecil */
+.tree-decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 3rem;
+    z-index: 1;
+    animation: swing 3s infinite alternate ease-in-out;
+}
+
+@keyframes swing {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+/* Produk spesial Natal */
+.special-tag {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: linear-gradient(to right, #ff0000, #8b0000);
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/* Animasi loading */
+.loader {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.loader.show {
+    display: block;
+}
+
+/* Pesan kosong */
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+/* Animasi cart icon */
+.cart-icon {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff0000;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+</style>
 </head>
+
 <body>
+<!-- Dekorasi lampu natal -->
+<div id="lights-container"></div>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <h1 class="logo">EnterKomputer</h1>
-      <nav class="nav">
-        <a href="#">Beranda</a>
-        <a href="#">Produk</a>
-        <a href="#">PC Rakitan</a>
-        <a href="#">Promo</a>
-        <a href="#">Kontak</a>
-      </nav>
+<!-- Efek salju -->
+<div id="snow-container"></div>
+
+<header>
+    <div class="logo">
+        <i class="fas fa-tree"></i>
+        <h1>Perlengkapan Komputer Natal</h1>
     </div>
-  </header>
+    <nav>
+        <a href="#"><i class="fas fa-home"></i> Beranda</a>
+        <a href="#produk"><i class="fas fa-gift"></i> Produk</a>
+        <a href="#keranjang" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i> Keranjang
+            <span id="cartCounter" class="cart-count">0</span>
+        </a>
+        <a href="#kontak"><i class="fas fa-phone-alt"></i> Kontak</a>
+    </nav>
+</header>
 
-  <!-- Hero / Banner -->
-  <section class="hero">
-    <h2>Toko Komputer & Aksesori Termurah</h2>
-    <p>Notebook, PC Rakitan, Laptop, GPU, RAM & Aksesori Lengkap!</p>
-    <a href="#produk" class="btn">Lihat Produk</a>
-  </section>
-
-  <!-- Produk -->
-  <section id="produk" class="products">
-    <div class="container">
-      <h2>Produk Unggulan</h2>
-      <div class="product-list">
-
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Produk 1" />
-          <h3>PC Rakitan Gaming</h3>
-          <p class="price">Rp 8.500.000</p>
-          <a href="#" class="btn">Beli Sekarang</a>
-        </div>
-
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Produk 2" />
-          <h3>Notebook ASUS</h3>
-          <p class="price">Rp 7.200.000</p>
-          <a href="#" class="btn">Beli Sekarang</a>
-        </div>
-
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Produk 3" />
-          <h3>GPU NVIDIA RTX</h3>
-          <p class="price">Rp 4.800.000</p>
-          <a href="#" class="btn">Beli Sekarang</a>
-        </div>
-
-      </div>
+<section class="hero">
+    <h2>Selamat Natal! 🎄</h2>
+    <p>Diskon spesial Natal hingga 30% untuk semua produk komputer & gaming!</p>
+    <div class="christmas-offer">
+        <i class="fas fa-gift"></i> Gratis Ongkir + Gift Spesial di setiap pembelian!
     </div>
-  </section>
+</section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Enter Komputer</p>
-      <p>Alamat: Mangga Dua Mall, Jakarta Pusat</p>
+<section class="container" id="produk">
+    <h2 class="section-title">Produk Spesial Natal</h2>
+    
+    <div class="category-filter">
+        <button class="category-btn active" onclick="filterProducts('all')">Semua Produk</button>
+        <button class="category-btn" onclick="filterProducts('keyboard')">Keyboard</button>
+        <button class="category-btn" onclick="filterProducts('mouse')">Mouse</button>
+        <button class="category-btn" onclick="filterProducts('processor')">Processor</button>
+        <button class="category-btn" onclick="filterProducts('motherboard')">Motherboard</button>
+        <button class="category-btn" onclick="filterProducts('ram')">RAM</button>
+        <button class="category-btn" onclick="filterProducts('ssd')">SSD</button>
+        <button class="category-btn" onclick="filterProducts('monitor')">Monitor</button>
     </div>
-  </footer>
+    
+    <div class="products" id="productsGrid">
+        <!-- Produk akan dimuat oleh JavaScript -->
+    </div>
+</section>
 
-</body>
-</html>
+<section class="container" id="keranjang">
+    <h2 class="section-title">Keranjang Belanja</h2>
+    <div class="cart">
+        <h3>Pesanan Anda <i class="fas fa-shopping-basket"></i></h3>
+        <ul id="cartList"></ul>
+        <div id="emptyCartMessage" class="empty-message">
+            <i class="fas fa-shopping-cart fa-3x"></i>
+            <p>Keranjang belanja Anda masih kosong</p>
+            <p>Tambahkan beberapa produk spesial Natal!</p>
+        </div>
+        <div id="totalHarga">Total: Rp 0</div>
+        <button class="checkout-btn" onclick="checkout()">
+            <i class="fas fa-check-circle"></i> Checkout Sekarang
+        </button>
+    </div>
+</section>
 
+<footer id="kontak">
+    <div class="tree-decoration">🎄</div>
+    <h3>Toko Komputer Spesial Natal</h3>
+    <p><i class="fas fa-map-marker-alt"></i> Jl. Natal Sejahtera No. 25, Jakarta</p>
+    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+    <p><i class="fas fa-envelope"></i> info@tokokomputernatal.com</p>
+    
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    
+    <p style="margin-top: 20px;">© 2023 Toko Komputer Natal. Semua hak dilindungi.</p>
+    <p style="font-size: 0.9rem; color: #a0aec0;">Selamat merayakan Natal dengan upgrade komputer Anda!</p>
+</footer>
+
+<!-- Konfirmasi tambah ke keranjang -->
+<div id="confirmation" class="confirmation">
+    <i class="fas fa-check-circle"></i>
+    <span>Ditambahkan ke keranjang!</span>
+</div>
+
+<script>
+// Data produk
+const products = [
+    {
+        id: 1,
+        name: "Keyboard Mechanical RGB",
+        category: "keyboard",
+        description: "Keyboard gaming dengan lampu RGB yang dapat disesuaikan",
+        price: 350000,
+        discount: 450000,
+        image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 2,
+        name: "Keyboard Gaming TKL",
+        category: "keyboard",
+        description: "Tenkeyless keyboard untuk gaming competitive",
+        price: 420000,
+        discount: 520000,
+        image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 3,
+        name: "Mouse Gaming",
+        category: "mouse",
+        description: "Mouse presisi tinggi dengan 8 tombol programmable",
+        price: 250000,
+        discount: 320000,
+        image: "https://images.unsplash.com/photo-1613141412501-9012977f1969?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 4,
+        name: "Intel Core i3",
+        category: "processor",
+        description: "Prosesor entry-level untuk kebutuhan sehari-hari",
+        price: 1800000,
+        discount: 2100000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 5,
+        name: "Intel Core i5",
+        category: "processor",
+        description: "Prosesor mid-range untuk gaming dan multitasking",
+        price: 3200000,
+        discount: 3700000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 6,
+        name: "Intel Core i7",
+        category: "processor",
+        description: "Prosesor high-end untuk gaming dan konten kreator",
+        price: 5500000,
+        discount: 6200000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 7,
+        name: "ASUS TUF B660",
+        category: "motherboard",
+        description: "Motherboard gaming untuk Intel Gen 12/13",
+        price: 2750000,
+        discount: 3200000,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 8,
+        name: "MSI MPG Z790",
+        category: "motherboard",
+        description: "Motherboard premium untuk overclocking",
+        price: 4850000,
+        discount: 5500000,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 9,
+        name: "Gigabyte B550 AORUS",
+        category: "motherboard",
+        description: "Motherboard AMD dengan WiFi dan RGB",
+        price: 3250000,
+        discount: 3800000,
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 10,
+        name: "RAM 4GB DDR4",
+        category: "ram",
+        description: "RAM 4GB DDR4 3200MHz untuk kebutuhan dasar",
+        price: 350000,
+        discount: 450000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 11,
+        name: "RAM 8GB DDR4 RGB",
+        category: "ram",
+        description: "RAM 8GB DDR4 3600MHz dengan RGB lighting",
+        price: 720000,
+        discount: 850000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 12,
+        name: "RAM 16GB DDR5",
+        category: "ram",
+        description: "RAM 16GB DDR5 5200MHz untuk gaming",
+        price: 1550000,
+        discount: 1800000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 13,
+        name: "RAM 32GB DDR5",
+        category: "ram",
+        description: "RAM 32GB DDR5 6000MHz untuk konten kreator",
+        price: 2950000,
+        discount: 3500000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 14,
+        name: "RAM 64GB DDR5 Kit",
+        category: "ram",
+        description: "RAM 64GB DDR5 (2x32GB) untuk workstation",
+        price: 5500000,
+        discount: 6200000,
+        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 15,
+        name: "SSD 128GB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 128GB untuk sistem operasi",
+        price: 280000,
+        discount: 350000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 16,
+        name: "SSD 256GB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 256GB dengan kecepatan tinggi",
+        price: 450000,
+        discount: 550000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 17,
+        name: "SSD 512GB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 512GB untuk gaming dan aplikasi",
+        price: 820000,
+        discount: 950000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 18,
+        name: "SSD 1TB NVMe",
+        category: "ssd",
+        description: "SSD NVMe 1TB dengan heatsink RGB",
+        price: 1550000,
+        discount: 1800000,
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 19,
+        name: 'Monitor 24" 144Hz',
+        category: "monitor",
+        description: "Monitor gaming 24 inch dengan refresh rate 144Hz",
+        price: 2100000,
+        discount: 2500000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 20,
+        name: 'Monitor 27" 165Hz QHD',
+        category: "monitor",
+        description: "Monitor gaming 27 inch QHD 165Hz IPS",
+        price: 3650000,
+        discount: 4200000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 21,
+        name: 'Monitor 32" 4K',
+        category: "monitor",
+        description: "Monitor 32 inch 4K untuk produktivitas",
+        price: 4950000,
+        discount: 5800000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+        id: 22,
+        name: 'Monitor 34" Ultrawide',
+        category: "monitor",
+        description: "Monitor ultrawide 34 inch untuk immersive experience",
+        price: 7200000,
+        discount: 8500000,
+        image: "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    }
+];
+
+// Cart data
+let cart = [];
+let totalHarga = 0;
+
+// Format angka ke Rupiah
+function formatRupiah(angka) {
+    return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+// Tampilkan produk
+function displayProducts(productsToShow = products) {
+    const productsGrid = document.getElementById('productsGrid');
+    productsGrid.innerHTML = '';
+    
+    productsToShow.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'card';
+        productCard.setAttribute('data-category', product.category);
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p class="description">${product.description}</p>
+            <p>
+                <span class="discount">${formatRupiah(product.discount)}</span>
+                <span class="price">${formatRupiah(product.price)}</span>
+            </p>
+            <button class="btn" onclick="addToCart(${product.id})">
+                <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+            </button>
+        `;
+        productsGrid.appendChild(productCard);
+    });
+}
+
+// Filter produk berdasarkan kategori
+function filterProducts(category) {
+    // Update active button
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    if (category === 'all') {
+        displayProducts();
+    } else {
+        const filteredProducts = products.filter(product => product.category === category);
+        displayProducts(filteredProducts);
+    }
+}
+
+// Tambah item ke keranjang
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    
+    // Cek apakah produk sudah ada di keranjang
+    const existingItem = cart.find(item => item.id === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+    
+    updateCart();
+    showConfirmation();
+    updateCartCounter();
+}
+
+// Update tampilan keranjang
+function updateCart() {
+    const cartList = document.getElementById('cartList');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    const totalHargaElement = document.getElementById('totalHarga');
+    
+    cartList.innerHTML = '';
+    totalHarga = 0;
+    
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+    } else {
+        emptyCartMessage.style.display = 'none';
+        
+        cart.forEach((item, index) =>
